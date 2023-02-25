@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+
+  prometheus:
+    image: prom/prometheus:v2.37.1
+    hostname: prom
+    container_name: prom
+    restart: always
+    ports:
+      - 9090:9090/tcp
+    volumes:
+      - ./prometheus:/etc/prometheus
+      
+  grafana:
+    image: grafana/grafana:9.3.2
+    container_name: grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana/dashboard.yml:/etc/grafana/provisioning/dashboards/dashboard.yml
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+  model:
+    ports:
+      - "4000:8080"
+    image: annaspiridonova/ml-data-analyzer:latest
+    hostname: model-analyzer
+    container_name: model-analyzer
+    environment:
+      - API_KEY=XXXX
+      - CITY=Vladivostok
+
+
+
+
