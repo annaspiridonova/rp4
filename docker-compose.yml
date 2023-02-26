@@ -25,6 +25,7 @@ services:
     volumes:
       - ./grafana/dashboard.yml:/etc/grafana/provisioning/dashboards/dashboard.yml
       - ./grafana/dashboards:/var/lib/grafana/dashboards
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
   model:
     ports:
       - "4000:8080"
@@ -32,7 +33,7 @@ services:
     hostname: model-analyzer
     container_name: model-analyzer
     environment:
-      - API_KEY=XXXX
+      - API_KEY=46df9edbd4b432ed7f03cdca86ebeac7
       - CITY=Vladivostok
 
 
