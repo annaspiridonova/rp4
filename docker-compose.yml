@@ -33,7 +33,7 @@ services:
     hostname: model-analyzer
     container_name: model-analyzer
     environment:
-      - API_KEY=46df9edbd4b432ed7f03cdca86ebeac7
+      - API_KEY=XXXXX
       - CITY=Vladivostok
 
 
